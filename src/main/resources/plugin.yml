@@ -1,0 +1,5 @@
+name: SpigotTemplate
+version: '${project.version}'
+main: cn.lingsmc.spigottemplate.SpigotTemplate
+api-version: 1.13
+authors: [ Crsuh2er0 ]
