@@ -1,5 +1,5 @@
-name: SpigotTemplate
+name: SafeOP
 version: '${project.version}'
-main: cn.lingsmc.spigottemplate.SpigotTemplate
+main: cn.lingsmc.safeop.SafeOP
 api-version: 1.13
 authors: [ Crsuh2er0 ]
