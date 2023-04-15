@@ -15,8 +15,6 @@ public final class SafeOP extends JavaPlugin {
     private static void initInstance() {
         instance = JavaPlugin.getPlugin(SafeOP.class);
     }
-
-
     @Override
     public void onLoad() {
         initInstance();
@@ -29,7 +27,6 @@ public final class SafeOP extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
         ConfigUtils.removeBackup();
     }
 }
