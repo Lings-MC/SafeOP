@@ -1,5 +1,5 @@
 name: SafeOP
 version: '${project.version}'
-main: cn.lingsmc.safeop.SafeOP
+main: cn.hellp.lingsmc.safeop.SafeOp
 api-version: 1.13
 authors: [ Crsuh2er0 ]

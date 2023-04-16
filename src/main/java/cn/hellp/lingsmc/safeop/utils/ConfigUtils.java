@@ -1,6 +1,6 @@
-package cn.lingsmc.safeop.utils;
+package cn.hellp.lingsmc.safeop.utils;
 
-import cn.lingsmc.safeop.SafeOP;
+import cn.hellp.lingsmc.safeop.SafeOp;
 import org.bukkit.Bukkit;
 
 import java.io.File;
@@ -18,7 +18,7 @@ import java.util.logging.Level;
  */
 public class ConfigUtils {
     private static final String SERVER_PATH = System.getProperty("user.dir");
-    private static final SafeOP PLUGIN = SafeOP.getInstance();
+    private static final SafeOp PLUGIN = SafeOp.getInstance();
     private static final String BACKUP_PATH = SERVER_PATH + "/plugins/SafeOP/ops.json";
     private static final String OPS_PATH = SERVER_PATH + "/ops.json";
 
@@ -56,8 +56,8 @@ public class ConfigUtils {
      */
     public static boolean checkBackup() {
         File backup = new File(BACKUP_PATH);
-        if (backup.exists()) {
-            PLUGIN.getLogger().log(Level.WARNING, "检测到服务器未正常关闭，正在恢复OP列表...");
+        if (backup.exists() && !diff(backup, new File(OPS_PATH))) {
+            PLUGIN.getLogger().log(Level.WARNING, "检测到服务器未正常关闭且OP列表出错，正在恢复OP列表...");
             try {
                 copy(backup, new File(OPS_PATH));
                 PLUGIN.getLogger().log(Level.FINE, "OP列表已恢复！重启中...");
@@ -86,6 +86,32 @@ public class ConfigUtils {
                 builder.append(new String(chars, 0, len));
             }
             outputStreamWriter.write(builder.toString());
+        }
+    }
+
+    /**
+     * Compare two files.
+     * @param file1 first file
+     * @param file2 second file
+     * @return true if two files are the same.
+     */
+    public static boolean diff(File file1,File file2){
+        StringBuilder builder1 = new StringBuilder();
+        StringBuilder builder2 = new StringBuilder();
+        try (final InputStreamReader inputStreamReader1 = new InputStreamReader(Files.newInputStream(file1.toPath()), StandardCharsets.UTF_8);
+             final InputStreamReader inputStreamReader2 = new InputStreamReader(Files.newInputStream(file2.toPath()), StandardCharsets.UTF_8)) {
+            int len;
+            char[] chars = new char[1 << 14];
+            while ((len = inputStreamReader1.read(chars)) != -1) {
+                builder1.append(new String(chars, 0, len));
+            }
+            while ((len = inputStreamReader2.read(chars)) != -1) {
+                builder2.append(new String(chars, 0, len));
+            }
+            return builder1.toString().equals(builder2.toString());
+        } catch (IOException e) {
+            PLUGIN.getLogger().log(Level.SEVERE, "对比OP列表失败，插件将无法正常工作。",e);
+            return false;
         }
     }
 

@@ -1,6 +1,6 @@
-package cn.lingsmc.safeop;
+package cn.hellp.lingsmc.safeop;
 
-import cn.lingsmc.safeop.utils.ConfigUtils;
+import cn.hellp.lingsmc.safeop.utils.ConfigUtils;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -8,12 +8,12 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author Crsuh2er0
  * @since 2023/1/16
  */
-public final class SafeOP extends JavaPlugin {
+public final class SafeOp extends JavaPlugin {
     @Getter
-    private static SafeOP instance;
+    private static SafeOp instance;
 
     private static void initInstance() {
-        instance = JavaPlugin.getPlugin(SafeOP.class);
+        instance = JavaPlugin.getPlugin(SafeOp.class);
     }
     @Override
     public void onLoad() {
