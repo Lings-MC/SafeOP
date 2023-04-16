@@ -19,7 +19,7 @@ import java.util.logging.Level;
 public class ConfigUtils {
     private static final String SERVER_PATH = System.getProperty("user.dir");
     private static final SafeOp PLUGIN = SafeOp.getInstance();
-    private static final String BACKUP_PATH = SERVER_PATH + "/plugins/SafeOP/ops.json";
+    private static final String BACKUP_PATH = SERVER_PATH + "/plugins/SafeOp/ops.json";
     private static final String OPS_PATH = SERVER_PATH + "/ops.json";
 
     private ConfigUtils() {
@@ -31,7 +31,7 @@ public class ConfigUtils {
             return;
         }
         // 初始化配置文件
-        File itemsFolder = new File(SERVER_PATH + "/plugins/SafeOP");
+        File itemsFolder = new File(SERVER_PATH + "/plugins/SafeOp");
         if (!itemsFolder.exists()) {
             try{
                 Files.createDirectory(itemsFolder.toPath());

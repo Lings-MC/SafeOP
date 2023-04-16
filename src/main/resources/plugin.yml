@@ -1,4 +1,4 @@
-name: SafeOP
+name: SafeOp
 version: '${project.version}'
 main: cn.hellp.lingsmc.safeop.SafeOp
 api-version: 1.13
